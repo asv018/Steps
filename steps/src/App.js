@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // App component
 const messages = [
   "Learn React ⚛️",
@@ -6,14 +8,23 @@ const messages = [
 ];
 
 export default function App(){
-  const step = 1;
+  const [step , setStep] = useState(1);
+  const [test , setTest]= useState({name : "Arpit"});
+
+
 
   function handlePrevious(){
-    alert("Previous");
+    if(step > 1)
+    setStep(step - 1);
+    // change the state
   }
 
   function handleNext(){
-    alert("Next");
+    if(step < 3)
+    setStep(step + 1);
+    // test.name = 'Shiv';
+    setTest({name : "Shiv"});
+  
   }
 
   return <div className="steps">  
@@ -23,7 +34,9 @@ export default function App(){
       <div className={`${step >= 3 ? 'active' : ""}`}>3</div>
     </div>
 
-    <p className="message"> Step {step} L {messages[step-1]} </p>
+    <p className="message"> Step {step} L {messages[step-1]}
+      {test.name}
+     </p>
 
     <div className="buttons">
       <button style={{backgroundColor : '#7950f2' , color: "#fff"}}
